@@ -28,7 +28,7 @@ function Heroes() {
 
     useEffect(() => {
         const controller = new AbortController()
-        if (mountedRef.current ) {
+        if (mountedRef.current ) { 
             console.log("Uniquement mise a jour de selectedLetter");
             
         }
