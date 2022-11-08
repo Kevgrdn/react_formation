@@ -19,6 +19,11 @@ function Layout() {
                 Heroes
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/battle" className={getActiveClassName}>
+                Battle
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>
