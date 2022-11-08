@@ -1,22 +1,10 @@
-import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {BASE_URL, fetcher} from "../api/fetcher";
 import Spinner from "../components/Spinner/Spinner";
-import {Hero} from "../types/hero";
+import {useSearchHero} from "../hooks/useSearchHero";
 
 function HeroDetails() {
   const {id} = useParams();
-  const [hero, setHero] = useState<Hero | null>(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetcher
-      .get<Hero>(BASE_URL + "/heroes/" + id)
-      .then((res) => setHero(res.data))
-      .catch((err) => setError(err.message))
-      .finally(() => setIsLoading(false));
-  }, []);
+  const {error, hero, isLoading} = useSearchHero(id!);
 
   return (
     <section>
