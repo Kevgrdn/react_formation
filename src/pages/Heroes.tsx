@@ -4,6 +4,7 @@ import {Hero} from "../types/hero";
 import Spinner from "../components/Spinner/Spinner";
 import HeroLabel from "../components/HeroLabel/HeroLabel";
 import {useNavigate, useSearchParams} from "react-router-dom";
+import HeroCard from "../components/HeroCard/HeroCard";
 
 function Heroes() {
   const navigate = useNavigate();
@@ -69,13 +70,19 @@ function Heroes() {
       </ul>
       {error && <p className="text-red-500">Houston, we have a problem: {error}</p>}
       <p>Vous avez cliqué sur {selectedLetter}</p>
-      {loading === true ? (
-        <Spinner />
-      ) : (
-        heroes.map((hero: Hero) => {
-          return <HeroLabel key={hero.id} id={hero.id} name={hero.name} onClick={() => navigate(hero.id)} />;
-        })
-      )}
+      {loading && <Spinner />}
+      <div className="flex flex-wrap gap-4 justify-center">
+        {!loading &&
+          heroes.map((hero) => (
+            // <HeroLabel
+            // 	key={hero.id}
+            // 	id={hero.id}
+            // 	name={hero.name}
+            // 	onClick={() => navigate(hero.id)}
+            // />
+            <HeroCard key={hero.id} hero={hero} />
+          ))}
+      </div>
     </>
   );
 }

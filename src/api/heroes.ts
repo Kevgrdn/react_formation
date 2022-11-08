@@ -9,3 +9,11 @@ export const getHeroes = (name: string) => {
       throw new Error("Err", err.message);
     });
 };
+export const getHeroById = (id: string) => {
+  return fetcher
+    .get<Hero>(BASE_URL + "/heroes/" + id)
+    .then((res) => res.data)
+    .catch((err) => {
+      throw new Error("Err", err.message);
+    });
+};

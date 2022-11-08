@@ -24,6 +24,16 @@ function Layout() {
                 Battle
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/counter" className={getActiveClassName}>
+                Counter
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/search" className={getActiveClassName}>
+                Search
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </header>
