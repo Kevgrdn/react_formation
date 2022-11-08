@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-.text-center {
+text-center {
   text-align: center;
 }
 
+button {
+  @apply bg-blue-500 text-white rounded-xl py-1 px-5;
+}
+
+h1 {
+  @apply text-center text-4xl uppercase tracking-widest font-extralight m-5;
+}
+
+input {
+  @apply border-b border-black mb-2 p-1;
+}

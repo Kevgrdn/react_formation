@@ -2,25 +2,14 @@ import {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {Hero} from "../types/hero";
 import Spinner from "../components/Spinner/Spinner";
-import {Link} from "react-router-dom";
-
-type HeroLabelProps = {
-  id: string;
-  name: string;
-};
-
-const HeroLabel = ({id, name}: HeroLabelProps) => {
-  return (
-    <Link to={id} className="block">
-      <span className="font-semibold text-gray-500 pr-2 my-2">#{id}</span>
-      {name}
-    </Link>
-  );
-};
+import HeroLabel from "../components/HeroLabel/HeroLabel";
+import {useNavigate, useSearchParams} from "react-router-dom";
 
 function Heroes() {
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const mountedRef = useRef(false);
-  const [selectedLetter, setSelectedLetter] = useState("A");
+  const [selectedLetter, setSelectedLetter] = useState(searchParams.get("q") || "A");
   const [heroes, setHeroes] = useState<Hero[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -55,8 +44,11 @@ function Heroes() {
 
   const onClickLetter = (letter: string) => {
     if (letter !== selectedLetter) {
-      setLoading(true);
+      setSearchParams({
+        q: letter,
+      });
       setSelectedLetter(letter);
+      setLoading(true);
     }
   };
 
@@ -81,7 +73,7 @@ function Heroes() {
         <Spinner />
       ) : (
         heroes.map((hero: Hero) => {
-          return <HeroLabel key={hero.id} id={hero.id} name={hero.name} />;
+          return <HeroLabel key={hero.id} id={hero.id} name={hero.name} onClick={() => navigate(hero.id)} />;
         })
       )}
     </>

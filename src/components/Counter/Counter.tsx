@@ -9,7 +9,7 @@ function Counter() {
 
   return (
     <>
-      <button className="flex justify-center bg-black text-white p-3 rounded-xl" onClick={increment}></button>
+      <button className="" onClick={increment}></button>
       <p>Count : {count} </p>
     </>
   );
